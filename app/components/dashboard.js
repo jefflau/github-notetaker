@@ -8,6 +8,8 @@ import {
   TouchableHighlight
 } from 'react-native';
 
+import API from '../utils/api';
+
 var styles = StyleSheet.create({
   container: {
     marginTop: 65,
@@ -52,13 +54,16 @@ export default class Main extends React.Component {
     })
   }
   goToRepo(){
-    this.props.navigator.push({
-      name: 'Repositories',
-      passProps: {
-        userInfo: this.props.userInfo
-      },
-      title: 'Repositories'
-    })
+    API.getRepos(this.props.userInfo.login).then((repos)=>{
+      this.props.navigator.push({
+        name: 'Repositories',
+        passProps: {
+          userInfo: this.props.userInfo,
+          repos
+        },
+        title: 'Repositories'
+      })
+    }).catch(err => console.log(err));
   }
   goToNotes(){
     console.log('notes')

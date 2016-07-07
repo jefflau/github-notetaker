@@ -11,6 +11,7 @@ import {
 import Main from './components/main';
 import Dashboard from './components/dashboard';
 import Profile from './components/profile';
+import Repositories from './components/repositories';
 
 var styles = StyleSheet.create({
   leftNavButtonText: {
@@ -56,6 +57,8 @@ function renderScene(route, navigator){
       return <Dashboard navigator={navigator} {...route.passProps} />
     case 'Profile':
       return <Profile navigator={navigator} {...route.passProps} />
+    case 'Repositories':
+      return <Repositories navigator={navigator} {...route.passProps} />
   }
 
 }
