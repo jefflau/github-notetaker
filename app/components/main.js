@@ -9,7 +9,10 @@ import {
   ActivityIndicator
 } from 'react-native';
 
+import Dimensions from 'Dimensions';
 import api from '../utils/api';
+
+var { width, height } = Dimensions.get('window');
 
 var styles = StyleSheet.create({
     mainContainer: {
@@ -51,8 +54,20 @@ var styles = StyleSheet.create({
         marginBottom: 10,
         marginTop: 10,
         alignSelf: 'stretch',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
+    loadingContainer: {
+      backgroundColor: 'rgba(255, 255, 255, 0.8)',
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: width,
+      height: height
+    }
 });
 
 export default class Main extends React.Component {
@@ -113,17 +128,17 @@ export default class Main extends React.Component {
     );
 
     var showLoading = (
-      this.state.isLoading ? <ActivityIndicator color="#111" size="large"></ActivityIndicator> : null
+      this.state.isLoading ? <View style={styles.loadingContainer}><ActivityIndicator color="#111" size="large"></ActivityIndicator></View> : null
     )
 
     return (
       <View style={styles.mainContainer}>
-        <Text style={styles.instructions}>
+        <Text style={styles.title}>
           Search for a Github User
         </Text>
         <TextInput value={this.state.username} onChange={this.handleChange.bind(this)} style={styles.searchInput} />
-        <TouchableHighlight style={styles.buton} onPress={this.handleSubmit.bind(this)}>
-          <Text>GO To View</Text>
+        <TouchableHighlight style={styles.button} onPress={this.handleSubmit.bind(this)}>
+          <Text>Search</Text>
         </TouchableHighlight>
         {showLoading}
         {showError}

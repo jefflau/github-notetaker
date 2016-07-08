@@ -12,6 +12,7 @@ import API from '../utils/api';
 
 var styles = StyleSheet.create({
   container: {
+    backgroundColor: 'white',
     marginTop: 65,
     flex: 1
   },
@@ -19,8 +20,8 @@ var styles = StyleSheet.create({
     height: 350,
   },
   buttonText: {
-    fontSize: 24,
-    color: 'white',
+    fontSize: 22,
+    color: '#333',
     alignSelf: 'center'
   },
   buttonContainer: {
@@ -28,13 +29,13 @@ var styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center',
     flex: 1,
-    backgroundColor: 'red'
+    backgroundColor: 'white',
+    borderBottomColor: 'grey',
+    borderBottomWidth: 1
   },
   repoButton: {
-    backgroundColor: 'blue'
   },
   notesButton: {
-    backgroundColor: 'green'
   }
 });
 
@@ -69,19 +70,18 @@ export default class Main extends React.Component {
     console.log('notes')
   }
   render(){
-    console.log('something', this.props);
     let { avatar_url } = this.props.userInfo;
     return (
       <View style={styles.container}>
       <Image source={{uri: this.props.userInfo.avatar_url}} style={styles.image}/>
       <TouchableHighlight onPress={ this.goToProfile.bind(this) } underlayColor="#88D4F5" style={[styles.buttonContainer]}>
-        <Text style={styles.buttonText}>Go to Profile</Text>
+        <Text style={styles.buttonText}>Profile</Text>
       </TouchableHighlight>
       <TouchableHighlight onPress={ this.goToRepo.bind(this) } underlayColor="#88D4F5" style={[styles.buttonContainer, styles.repoButton]}>
-        <Text style={styles.buttonText}>Go to Repos</Text>
+        <Text style={styles.buttonText}>Repos</Text>
       </TouchableHighlight>
       <TouchableHighlight onPress={ this.goToNotes.bind(this) } underlayColor="#88D4F5" style={[styles.buttonContainer, styles.notesButton]}>
-        <Text style={styles.buttonText}>Go to Notes</Text>
+        <Text style={styles.buttonText}>Notes</Text>
       </TouchableHighlight>
       </View>
     )

@@ -12,6 +12,7 @@ import Separator from './separator';
 
 var styles = StyleSheet.create({
   container: {
+    backgroundColor: 'white',
     marginTop: 65,
     flex: 1
   },

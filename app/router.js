@@ -12,15 +12,18 @@ import Main from './components/main';
 import Dashboard from './components/dashboard';
 import Profile from './components/profile';
 import Repositories from './components/repositories';
+import WebView from './components/webView';
 
 var styles = StyleSheet.create({
   leftNavButtonText: {
-
+    padding: 10,
   },
   rightNavButtonText: {
 
   },
-  title: {}
+  title: {
+    paddingTop: 10
+  }
 })
 
 var NavigationBarRouteMapper = {
@@ -59,6 +62,8 @@ function renderScene(route, navigator){
       return <Profile navigator={navigator} {...route.passProps} />
     case 'Repositories':
       return <Repositories navigator={navigator} {...route.passProps} />
+    case 'WebView':
+      return <WebView navigator={navigator} {...route.passProps} />
   }
 
 }
