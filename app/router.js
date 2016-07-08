@@ -13,6 +13,7 @@ import Dashboard from './components/dashboard';
 import Profile from './components/profile';
 import Repositories from './components/repositories';
 import WebView from './components/webView';
+import Notes from './components/notes';
 
 var styles = StyleSheet.create({
   leftNavButtonText: {
@@ -64,6 +65,8 @@ function renderScene(route, navigator){
       return <Repositories navigator={navigator} {...route.passProps} />
     case 'WebView':
       return <WebView navigator={navigator} {...route.passProps} />
+    case 'Notes':
+      return <Notes navigator={navigator} {...route.passProps} />
   }
 
 }

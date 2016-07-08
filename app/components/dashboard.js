@@ -40,11 +40,6 @@ var styles = StyleSheet.create({
 });
 
 export default class Main extends React.Component {
-  _navigate(){
-    this.props.navigator.push({
-      name: 'Main', // Matches route.name
-    })
-  }
   goToProfile(){
     this.props.navigator.push({
       name: 'Profile',
@@ -67,7 +62,10 @@ export default class Main extends React.Component {
     }).catch(err => console.log(err));
   }
   goToNotes(){
-    console.log('notes')
+    this.props.navigator.push({
+      name: 'Notes',
+      title: 'Notes'
+    })
   }
   render(){
     let { avatar_url } = this.props.userInfo;

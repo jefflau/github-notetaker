@@ -94,11 +94,11 @@ export default class Main extends React.Component {
 
   handleSubmit(event){
     this.setState({
-      isLoading: true
+      isLoading: true,
+      error: ''
     });
 
     api.getBio(this.state.username).then((res)=>{
-      console.log('here', res)
       if(res.message === 'Not Found') {
         this.setState({
           error: 'User not found',
@@ -117,7 +117,21 @@ export default class Main extends React.Component {
           }
         })
       }
-    })
+    }).catch(err =>{
+      this.setState({
+        isLoading: false,
+        error: err.message
+      })
+    });
+
+    setTimeout(()=>{
+      if(this.state.isLoading === true) {
+        this.setState({
+          isLoading: false,
+          error: 'Server timed out'
+        })
+      }
+    }, 10000)
 
     console.log('submit', this.state.username);
   }
@@ -127,9 +141,12 @@ export default class Main extends React.Component {
       this.state.error ? <Text>{this.state.error}</Text>: null
     );
 
-    var showLoading = (
-      this.state.isLoading ? <View style={styles.loadingContainer}><ActivityIndicator color="#111" size="large"></ActivityIndicator></View> : null
-    )
+    var showLoading =
+        this.state.isLoading ? (
+          <View style={styles.loadingContainer}>
+            <ActivityIndicator color="#111" size="large"></ActivityIndicator>
+          </View>
+        ) : null;
 
     return (
       <View style={styles.mainContainer}>
